@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">android-news-app</string>
+    <string name="title_article_detail">Article Detail</string>
+    <string name="article_read_more">Read More</string>
+</resources>
