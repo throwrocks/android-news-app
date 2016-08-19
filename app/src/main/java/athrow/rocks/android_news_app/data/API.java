@@ -20,12 +20,12 @@ import athrow.rocks.android_news_app.BuildConfig;
 public final class API {
     private static final String API_KEY = BuildConfig.GUARDIAN_API_KEY;
     private static final String API_URL = "http://content.guardianapis.com/";
-    private static final String apiSearchParam = "search?q=";
-    private static final String apiOtherParams = "&show-tags=contributor&show-blocks=body:latest&show-elements=image";
-    private static final String apikeyParam = "&api-key=";
+    private static final String API_SEARCH_PARAM = "search?q=";
+    private static final String API_OTHER_PARAMS = "&show-tags=contributor&show-blocks=body:latest&show-elements=image";
+    private static final String API_KEY_PARAM = "&api-key=";
     public static String callAPI(){
         String searchCriteria = "art%20history";
-        String APIUrl = API_URL + apiSearchParam + searchCriteria + apiOtherParams + apikeyParam + API_KEY;
+        String APIUrl = API_URL + API_SEARCH_PARAM + searchCriteria + API_OTHER_PARAMS + API_KEY_PARAM + API_KEY;
         Log.d("APIUrl", APIUrl);
         return httpConnect(APIUrl);
     }
@@ -80,7 +80,6 @@ public final class API {
                 }
             }
         }
-        Log.i("json ", results);
         return results;
     }
 }
