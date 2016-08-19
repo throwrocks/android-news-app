@@ -3,6 +3,6 @@
     <string name="title_article_detail">Article Detail</string>
     <string name="article_by">By</string>
     <string name="article_published_on">Published on </string>
-    <string name="article_read_more">Read More</string>
+    <string name="article_read_more">Read Story</string>
     <string name="dot">·</string>
 </resources>

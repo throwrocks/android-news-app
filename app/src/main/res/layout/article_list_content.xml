@@ -18,9 +18,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
         android:paddingTop="16dp">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:id="@+id/article_image"
+            android:layout_width="match_parent"
+            android:layout_height="124dp" />
 
         <TextView
             android:id="@+id/article_title"
@@ -107,6 +113,7 @@
             android:background="@color/colorDividerColor" />
 
         <Button
+            android:id="@+id/article_read_story"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

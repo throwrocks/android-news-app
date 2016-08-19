@@ -24,7 +24,7 @@ public final class API {
     private static final String apiOtherParams = "&show-tags=contributor&show-blocks=body:latest&show-elements=image";
     private static final String apikeyParam = "&api-key=";
     public static String callAPI(){
-        String searchCriteria = "art-history";
+        String searchCriteria = "art%20history";
         String APIUrl = API_URL + apiSearchParam + searchCriteria + apiOtherParams + apikeyParam + API_KEY;
         Log.d("APIUrl", APIUrl);
         return httpConnect(APIUrl);

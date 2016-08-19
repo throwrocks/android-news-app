@@ -1,14 +1,19 @@
 package athrow.rocks.android_news_app.adapter;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,11 +27,13 @@ import athrow.rocks.android_news_app.util.Utilities;
  */
 public class ArticleListAdapter
         extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
-    private final static String DATE_DISPLAY = "MMM dd, yyyy";;
+    private final static String DATE_DISPLAY = "MMM dd, yyyy";
+    private final Context mContext;
     private final ArrayList<Articles> mValues;
 
-    public ArticleListAdapter(ArrayList<Articles> items) {
-        mValues = items;
+    public ArticleListAdapter(ArrayList<Articles> items, Context context) {
+        this.mValues = items;
+        this.mContext = context;
     }
 
     @Override
@@ -40,15 +47,24 @@ public class ArticleListAdapter
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         // Get the article variables
+        String imageUrl = holder.mItem.getImageUrl();
         String title = holder.mItem.getWebTitle();
         String date = holder.mItem.getWebPublicationDate();
         String section = holder.mItem.getSectionName();
         String type = holder.mItem.getType();
         String author = holder.mItem.getAuthor();
+        final String url = holder.mItem.getWebUrl();
         // Convert the date to readable format
         Date dateObj = Utilities.getStringAsDate(date,DATE_DISPLAY,null);
         String dateSting = Utilities.getDateAsString(dateObj, DATE_DISPLAY, null);
         // Set the views
+        if ( imageUrl.equals("No Image")){
+            holder.mArticleImage.setVisibility(View.GONE);
+
+        }else{
+            holder.mArticleImage.setVisibility(View.VISIBLE);
+            Picasso.with(mContext).load(imageUrl).into(holder.mArticleImage);
+        }
         holder.mArticleTitleView.setText(title);
         if ( author.equals("No Author") ){
             holder.mArticleDotView.setVisibility(View.GONE);
@@ -60,10 +76,13 @@ public class ArticleListAdapter
         holder.mArticleDateView.setText(dateSting);
         holder.mArticleSectionView.setText(section);
         holder.mArticleTypeView.setText(type);
-        holder.mView.setOnClickListener(new View.OnClickListener() {
+        holder.mArticleReadStory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                if (intent.resolveActivity(mContext.getPackageManager()) != null) {
+                    mContext.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                }
             }
         });
     }
@@ -79,6 +98,7 @@ public class ArticleListAdapter
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
+        public final ImageView mArticleImage;
         public final TextView mArticleTitleView;
         public final TextView mArticleByView;
         public final TextView mArticleAuthorView;
@@ -87,13 +107,12 @@ public class ArticleListAdapter
         public final TextView mArticleDateView;
         public final TextView mArticleSectionView;
         public final TextView mArticleTypeView;
-
-
+        public final Button mArticleReadStory;
         public Articles mItem;
-
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            mArticleImage = (ImageView) view.findViewById(R.id.article_image);
             mArticleTitleView = (TextView) view.findViewById(R.id.article_title);
             mArticleByView = (TextView) view.findViewById(R.id.article_by);
             mArticleAuthorView = (TextView) view.findViewById(R.id.article_author);
@@ -102,7 +121,7 @@ public class ArticleListAdapter
             mArticleDateView = (TextView) view.findViewById(R.id.article_date);
             mArticleSectionView = (TextView) view.findViewById(R.id.article_section);
             mArticleTypeView = (TextView) view.findViewById(R.id.article_type);
-
+            mArticleReadStory = (Button) view.findViewById(R.id.article_read_story);
 
         }
     }

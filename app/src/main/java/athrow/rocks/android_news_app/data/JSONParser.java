@@ -73,14 +73,11 @@ public class JSONParser {
                     JSONArray articleElements = articleBodyLatest.getJSONArray("elements");
                     JSONObject articleAssets = articleElements.getJSONObject(1);
                     JSONArray articleImageArray = articleAssets.getJSONArray("assets");
-                    JSONObject articleImage = articleImageArray.getJSONObject(1);
+                    JSONObject articleImage = articleImageArray.getJSONObject(3);
                     articleFile = articleImage.getString("file");
 
                 } catch (JSONException ignored) {
                 }
-
-
-
                 // Create an Article Object
                 Articles article = new Articles(
                         articleId,
