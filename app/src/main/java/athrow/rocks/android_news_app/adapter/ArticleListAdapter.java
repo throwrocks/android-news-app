@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -42,14 +44,22 @@ public class ArticleListAdapter
         String date = holder.mItem.getWebPublicationDate();
         String section = holder.mItem.getSectionName();
         String type = holder.mItem.getType();
+        String author = holder.mItem.getAuthor();
         // Convert the date to readable format
         Date dateObj = Utilities.getStringAsDate(date,DATE_DISPLAY,null);
         String dateSting = Utilities.getDateAsString(dateObj, DATE_DISPLAY, null);
         // Set the views
         holder.mArticleTitleView.setText(title);
+        if ( author.equals("No Author") ){
+            holder.mArticleDotView.setVisibility(View.GONE);
+            holder.mArticleByView.setVisibility(View.GONE);
+            holder.mArticleAuthorView.setVisibility(View.GONE);
+        }else{
+            holder.mArticleAuthorView.setText(author);
+        }
         holder.mArticleDateView.setText(dateSting);
-        holder.mArticleSection.setText(section);
-        holder.mArticleType.setText(type);
+        holder.mArticleSectionView.setText(section);
+        holder.mArticleTypeView.setText(type);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,9 +80,14 @@ public class ArticleListAdapter
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mArticleTitleView;
+        public final TextView mArticleByView;
+        public final TextView mArticleAuthorView;
+        public final TextView mArticleDotView;
+        public final TextView mArticlePublishedOnView;
         public final TextView mArticleDateView;
-        public final TextView mArticleSection;
-        public final TextView mArticleType;
+        public final TextView mArticleSectionView;
+        public final TextView mArticleTypeView;
+
 
         public Articles mItem;
 
@@ -80,9 +95,14 @@ public class ArticleListAdapter
             super(view);
             mView = view;
             mArticleTitleView = (TextView) view.findViewById(R.id.article_title);
+            mArticleByView = (TextView) view.findViewById(R.id.article_by);
+            mArticleAuthorView = (TextView) view.findViewById(R.id.article_author);
+            mArticleDotView = (TextView) view.findViewById(R.id.article_dot);
+            mArticlePublishedOnView = (TextView) view.findViewById(R.id.article_published_on);
             mArticleDateView = (TextView) view.findViewById(R.id.article_date);
-            mArticleSection = (TextView) view.findViewById(R.id.article_section);
-            mArticleType = (TextView) view.findViewById(R.id.article_type);
+            mArticleSectionView = (TextView) view.findViewById(R.id.article_section);
+            mArticleTypeView = (TextView) view.findViewById(R.id.article_type);
+
 
         }
     }

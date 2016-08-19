@@ -15,10 +15,12 @@ public class Articles {
     private String webUrl;
     private String apiUrl;
     private Boolean isHosted;
+    private String author;
+    private String imageUrl;
 
     public Articles(String id, String type, String sectionId, String sectionName,
                     String webPublicationDate, String webTitle, String webUrl,
-                    String apiUrl, Boolean isHosted) {
+                    String apiUrl, Boolean isHosted, String author, String imageUrl) {
         this.id = id;
         this.type = type;
         this.sectionId = sectionId;
@@ -28,6 +30,8 @@ public class Articles {
         this.webUrl = webUrl;
         this.apiUrl = apiUrl;
         this.isHosted = isHosted;
+        this.author = author;
+        this.imageUrl = imageUrl;
     }
 
     public String getId() {
@@ -65,4 +69,8 @@ public class Articles {
     public Boolean getHosted() {
         return isHosted;
     }
+
+    public String getAuthor(){ return author; }
+
+    public String getImageUrl(){ return imageUrl; }
 }

@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">android-news-app</string>
+    <string name="app_name">Art History News</string>
     <string name="title_article_detail">Article Detail</string>
+    <string name="article_by">By</string>
+    <string name="article_published_on">Published on </string>
     <string name="article_read_more">Read More</string>
+    <string name="dot">·</string>
 </resources>

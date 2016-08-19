@@ -21,10 +21,11 @@ public final class API {
     private static final String API_KEY = BuildConfig.GUARDIAN_API_KEY;
     private static final String API_URL = "http://content.guardianapis.com/";
     private static final String apiSearchParam = "search?q=";
+    private static final String apiOtherParams = "&show-tags=contributor&show-blocks=body:latest&show-elements=image";
     private static final String apikeyParam = "&api-key=";
     public static String callAPI(){
-        String searchCriteria = "art";
-        String APIUrl = API_URL + apiSearchParam + searchCriteria + apikeyParam + API_KEY;
+        String searchCriteria = "art-history";
+        String APIUrl = API_URL + apiSearchParam + searchCriteria + apiOtherParams + apikeyParam + API_KEY;
         Log.d("APIUrl", APIUrl);
         return httpConnect(APIUrl);
     }
