@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -28,6 +27,8 @@ import athrow.rocks.android_news_app.util.Utilities;
 public class ArticleListAdapter
         extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
     private final static String DATE_DISPLAY = "MMM dd, yyyy";
+    private final static String NO_IMAGE = "No Image";
+    private final static String NO_AUTHOR = "No Author";
     private final Context mContext;
     private final ArrayList<Articles> mValues;
 
@@ -50,15 +51,15 @@ public class ArticleListAdapter
         String imageUrl = holder.mItem.getImageUrl();
         String title = holder.mItem.getWebTitle();
         String date = holder.mItem.getWebPublicationDate();
-        String section = holder.mItem.getSectionName();
-        String type = holder.mItem.getType();
+        String section = holder.mItem.getSectionName().toLowerCase();
+        String type = holder.mItem.getType().toLowerCase();
         String author = holder.mItem.getAuthor();
         final String url = holder.mItem.getWebUrl();
         // Convert the date to readable format
         Date dateObj = Utilities.getStringAsDate(date,DATE_DISPLAY,null);
         String dateSting = Utilities.getDateAsString(dateObj, DATE_DISPLAY, null);
         // Set the views
-        if ( imageUrl.equals("No Image")){
+        if ( imageUrl.equals(NO_IMAGE)){
             holder.mArticleImage.setVisibility(View.GONE);
 
         }else{
@@ -66,7 +67,7 @@ public class ArticleListAdapter
             Picasso.with(mContext).load(imageUrl).into(holder.mArticleImage);
         }
         holder.mArticleTitleView.setText(title);
-        if ( author.equals("No Author") ){
+        if ( author.equals(NO_AUTHOR) ){
             holder.mArticleDotView.setVisibility(View.GONE);
             holder.mArticleByView.setVisibility(View.GONE);
             holder.mArticleAuthorView.setVisibility(View.GONE);

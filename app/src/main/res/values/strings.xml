@@ -5,4 +5,5 @@
     <string name="article_published_on">Published on </string>
     <string name="article_read_more">Read Story</string>
     <string name="dot">·</string>
+    <string name="no_network_connection">No network connection</string>
 </resources>
