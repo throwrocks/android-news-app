@@ -1,5 +1,10 @@
 # android-news-app
 
+Set your API key in the gradle.properties file.
+
+GuardianAPIKey = ""
+
+
 
 ___
 
