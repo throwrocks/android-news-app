@@ -27,6 +27,7 @@ import athrow.rocks.android_news_app.util.Utilities;
 public class ArticleListAdapter
         extends RecyclerView.Adapter<ArticleListAdapter.ViewHolder> {
     private final static String DATE_DISPLAY = "MMM dd, yyyy";
+    private final static String DATE_UTC = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     private final static String NO_IMAGE = "No Image";
     private final static String NO_AUTHOR = "No Author";
     private final Context mContext;
@@ -56,7 +57,7 @@ public class ArticleListAdapter
         String author = holder.mItem.getAuthor();
         final String url = holder.mItem.getWebUrl();
         // Convert the date to readable format
-        Date dateObj = Utilities.getStringAsDate(date,DATE_DISPLAY,null);
+        Date dateObj = Utilities.getStringAsDate(date,DATE_UTC,null);
         String dateSting = Utilities.getDateAsString(dateObj, DATE_DISPLAY, null);
         // Set the views
         if ( imageUrl.equals(NO_IMAGE)){
