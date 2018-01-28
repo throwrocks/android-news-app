@@ -2,7 +2,7 @@
 
 A simple app that fetches art history news from the Guardian API. The app fires up an AsyncTask to get the JSON results, parses them, creates custom Article objects, and binds a RecyclerView with an Adapter. Clicking on the "Read Story" button launches the browser where you can read the full article.
 
-![News App List](http://throw.rocks/android-projects/news-app/news-app-list.jpg)
+![News App List](https://github.com/throwrocks/android-project-images/blob/master/news-app/news-app-list.jpg)
 
 
 ___
